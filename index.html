@@ -34,6 +34,12 @@
             	});
         	}
     	</script>
+		<script src="https://www.google.com/recaptcha/api.js"></script>
+		<script>
+			function onSubmit(token) {
+			  document.getElementById("demo-form").submit();
+			}
+		  </script>
 	</head>
 	<body class="is-preload">
 
@@ -81,7 +87,7 @@
 										<p>Improve your swimming, cycling and running performance<br />
 										 </p>
 									</header>
-									<p>I can help you outperform yourself in swimming, cycling and running, whether you're a complete beginner, or an experienced athlete, <br /> 
+									<p>You want to outperform yourself in swimming, cycling and running, and you need a coach to guide you? I can help you whether you're a complete beginner or an experienced athlete. <br /> 
 									For 12 years I worked with olympic swimmers alongside Ronald Gaastra. The silver medal of Pieter Timmers at the Olympics in Rio 2016 was our greatest achievement.<br /> 
 									The combination of profound scientific knowledge as a Master in Sport Sciences, Master in Rehabilitation Sciences, Trainer A Swimming (VTS) and coaching experience at the highest level has given me a great understanding of how people can improve themselves to achieve their own goals.</p>
 								</div>
@@ -151,6 +157,10 @@
 													<li><input type="submit" class="primary" value="Send Message" /></li>
 													<li><input type="reset" value="Reset Form" /></li>
 												</ul>
+												<button class="g-recaptcha" 
+        												data-sitekey="reCAPTCHA_site_key" 
+        												data-callback='onSubmit' 
+        												data-action='submit'>Submit</button>
 											</div>
 										</div>
 									</form>

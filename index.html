@@ -25,9 +25,6 @@
         	window.onload = function() {
             	document.getElementById('contact-form').addEventListener('submit', function(event) {
                 	event.preventDefault();
-                	// generate a five digit number for the contact_number variable
-                	this.contact_number.value = Math.random() * 100000 | 0;
-                	// these IDs from the previous steps
                 	emailjs.sendForm('contact_service', 'contact_form', this)
                     	.then(function() {
                         	console.log('SUCCESS!');
@@ -143,7 +140,7 @@
 								<div class="container">
 									<h3>Contact Me</h3>
 									<p>Feel free to contact me and see what I can do for you</p>
-									<form form id="contact-form">
+									<form form id="contact_form">
 										<div class="row gtr-uniform">
 											<div class="col-6 col-12-xsmall"><input type="text" name="name" id="name" placeholder="Name" /></div>
 											<div class="col-6 col-12-xsmall"><input type="email" name="email" id="email" placeholder="Email" /></div>

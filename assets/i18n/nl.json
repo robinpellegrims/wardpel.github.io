@@ -25,5 +25,9 @@
     "projects-camps-title": "Trainingskampen",
     "projects-camps-content": "In samenwerking met Ronald Gaastra - coming soon ",
     "contact-title": "Contacteer mij",
-    "contact-intro": "Contacteer me vrijblijvend via onderstaand formulier en kijk wat ik voor jou kan betekenen"
+    "contact-intro": "Contacteer me vrijblijvend via onderstaand formulier en kijk wat ik voor jou kan betekenen",
+    "placeholder-name": "Naam",
+    "placeholder-email": "E-mail",
+    "placeholder-subject": "Onderwerp",
+    "placeholder-message": "Bericht"
 }

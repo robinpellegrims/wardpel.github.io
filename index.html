@@ -19,19 +19,6 @@
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 		<link href="site.webmanifest" rel="manifest">
-		<script type="text/javascript">
-			window.onload = function () {
-				document.getElementById('contact-form').addEventListener('submit', function (event) {
-					event.preventDefault();
-					emailjs.sendForm('contact_service', 'contact_form', this)
-							.then(function () {
-								console.log('SUCCESS!');
-							}, function (error) {
-								console.log('FAILED...', error);
-							});
-				});
-			}
-		</script>
 	</head>
 	<body class="is-preload">
 
@@ -196,7 +183,19 @@
 				emailjs.init("user_XN4D5XCgg7cTAaQJIkE71");
 			})();
 		</script>
-		
+		<script type="text/javascript">
+			$(document).ready(function() {
+				document.getElementById('contact-form').addEventListener('submit', function (event) {
+					event.preventDefault();
+					emailjs.sendForm('contact_service', 'contact_form', this)
+							.then(function () {
+								console.log('SUCCESS!');
+							}, function (error) {
+								console.log('FAILED...', error);
+							});
+				});
+			});
+		</script>
 		<script src="https://cdn.jsdelivr.net/npm/vavilon@1.2.0-7/dist/vavilon.min.js"></script>
 		<script async defer src="https://www.google.com/recaptcha/api.js"></script>
 	</body>

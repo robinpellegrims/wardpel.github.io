@@ -150,7 +150,9 @@
 											</div>
 											
 										</div>
+										<p data-vavilon="contact-fail" id="contact-fail" style="display: none; color: #BF2323">An error occured while trying to send your message, please try again.</p>
 									</form>
+									<p data-vavilon="contact-success" id="contact-success" style="display: none;">Message succesfully sent!</p>
 								</div>
 							</section>
 					</div>
@@ -184,15 +186,25 @@
 			})();
 		</script>
 		<script type="text/javascript">
-			$(document).ready(function() {
-				document.getElementById('contact-form').addEventListener('submit', function (event) {
+			const formElement = document.getElementById('contact-form');
+			const succesElement = document.getElementById('contact-success');
+			const failElement = document.getElementById('contact-fail');
+			const displayElement = (element, display) => element.style.display = display ? "block" : "none";
+			const handleSuccess = () => {
+				displayElement(formElement, false);
+				displayElement(succesElement, true);
+				displayElement(failElement, false);
+			}
+			const handleError = () => {
+				displayElement(formElement, true);
+				displayElement(succesElement, false);
+				displayElement(failElement, true);
+			}
+			$(document).ready(function () {
+				formElement.addEventListener('submit', function (event) {
+					displayElement(failElement, false);
 					event.preventDefault();
-					emailjs.sendForm('contact_service', 'contact_form', this)
-							.then(function () {
-								console.log('SUCCESS!');
-							}, function (error) {
-								console.log('FAILED...', error);
-							});
+					emailjs.sendForm('contact_service', 'contact_form', this).then(handleSuccess, handleError);
 				});
 			});
 		</script>

@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { getImagePath } from '@/lib/utils'
 import type { Locale } from '@/lib/i18n'
 import type { TranslationKey } from '@/lib/translations'
 
@@ -10,49 +11,49 @@ type Props = {
 export default function Projects({ t }: Props) {
   const projects = [
     {
-      image: "/images/pic01.jpg",
+      image: getImagePath("/images/pic01.jpg"),
       title: t.projects.items.eliteSwimmers.title,
       description: t.projects.items.eliteSwimmers.description,
       link: null
     },
     {
-      image: "/images/rwanda1.jpg", 
+      image: getImagePath("/images/rwanda1.jpg"), 
       title: t.projects.items.rwanda.title,
       description: t.projects.items.rwanda.description,
       link: "https://www.rwandanepic.com/"
     },
     {
-      image: "/images/qlxnow.png",
+      image: getImagePath("/images/qlxnow.png"),
       title: t.projects.items.qlx.title, 
       description: t.projects.items.qlx.description,
       link: "https://qlxnow.com"
     },
     {
-      image: "/images/Trainingpeaks logo.png",
+      image: getImagePath("/images/Trainingpeaks logo.png"),
       title: t.projects.items.trainingPlans.title,
       description: t.projects.items.trainingPlans.description,
       link: "https://www.trainingpeaks.com/coach/pellegrims#trainingplans"
     },
     {
-      image: "/images/rgf.jpg", 
+      image: getImagePath("/images/rgf.jpg"), 
       title: t.projects.items.startToSwim.title,
       description: t.projects.items.startToSwim.description,
       link: null
     },
     {
-      image: "/images/pic03.jpg",
+      image: getImagePath("/images/pic03.jpg"),
       title: t.projects.items.trainingCamps.title,
       description: t.projects.items.trainingCamps.description, 
       link: null
     },
     {
-      image: "/images/rdmlogo.png",
+      image: getImagePath("/images/rdmlogo.png"),
       title: t.projects.items.rocDuMaroc.title,
       description: t.projects.items.rocDuMaroc.description,
       link: "https://www.rocdumaroc.com/"
     },
     {
-      image: "/images/pic02.jpg",
+      image: getImagePath("/images/pic02.jpg"),
       title: t.projects.items.gramchallenge.title,
       description: t.projects.items.gramchallenge.description,
       link: "https://gramchallenge.com"

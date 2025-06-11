@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import { FaTwitter, FaFacebookF, FaInstagram, FaLinkedin, FaEnvelope, FaBars, FaTimes, FaGlobe } from 'react-icons/fa'
+import { getImagePath } from '@/lib/utils'
 import type { Locale } from '@/lib/i18n'
 import type { TranslationKey } from '@/lib/translations'
 
@@ -33,7 +34,7 @@ export default function Header({ locale, t }: Props) {
         <div className="p-12 text-center">
           <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden">
             <Image
-              src="/images/avatar.jpg"
+              src={getImagePath("/images/avatar.jpg")}
               alt="Ward Pellegrims"
               width={128}
               height={128}
@@ -170,7 +171,7 @@ export default function Header({ locale, t }: Props) {
             <div className="p-8 text-center">
               <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden">
                 <Image
-                  src="/images/avatar.jpg"
+                  src={getImagePath("/images/avatar.jpg")}
                   alt="Ward Pellegrims"
                   width={96}
                   height={96}

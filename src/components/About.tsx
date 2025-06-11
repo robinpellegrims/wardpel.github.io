@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { getImagePath } from '@/lib/utils'
 import type { Locale } from '@/lib/i18n'
 import type { TranslationKey } from '@/lib/translations'
 
@@ -12,7 +13,7 @@ export default function About({ t }: Props) {
     <section id="about">
       <div className="relative h-80 w-full">
         <Image
-          src="/images/banner_1920.jpg"
+          src={getImagePath("/images/banner_1920.jpg")}
           alt={t.about.bannerAlt}
           fill
           className="object-cover object-center"

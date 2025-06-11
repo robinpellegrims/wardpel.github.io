@@ -64,7 +64,9 @@ export default function Contact({ t }: Props) {
       return
     }
 
-    if (!recaptchaToken) {
+    // Skip reCAPTCHA check in development
+    const isProduction = process.env.NODE_ENV === 'production'
+    if (isProduction && !recaptchaToken) {
       console.warn('Please complete the reCAPTCHA verification')
       setStatus('error')
       return
@@ -177,15 +179,17 @@ export default function Contact({ t }: Props) {
             />
           </div>
 
-          {/* reCAPTCHA */}
-          <div className="flex justify-center">
-            <div 
-              className="g-recaptcha" 
-              data-sitekey="6Lc5w0ocAAAAAINj9RiSNuQpeFhf-NQO8uzBexrk"
-              data-callback="recaptchaCallback"
-              data-expired-callback="recaptchaExpired"
-            ></div>
-          </div>
+          {/* reCAPTCHA - Only show in production */}
+          {process.env.NODE_ENV === 'production' && (
+            <div className="flex justify-center">
+              <div 
+                className="g-recaptcha" 
+                data-sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "6Lc5w0ocAAAAAINj9RiSNuQpeFhf-NQO8uzBexrk"}
+                data-callback="recaptchaCallback"
+                data-expired-callback="recaptchaExpired"
+              ></div>
+            </div>
+          )}
 
           {status === 'error' && (
             <div className="bg-red-50 border border-red-200 rounded-lg p-4">

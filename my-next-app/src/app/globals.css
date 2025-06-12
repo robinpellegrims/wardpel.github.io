@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* :root variables from previous steps */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  /* If you had custom font variables for Lato, define them here or rely on Tailwind's font-lato class */
+}
+
+/* It's common to apply default font to body if not done via Tailwind config */
+/* body {
+  font-family: theme('fontFamily.lato'), sans-serif;
+} */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  /* The font-lato class should be on the body or html tag in layout.tsx for global font */
+}
+
+/* Font Awesome @font-face declarations */
+@font-face {
+  font-family: 'Font Awesome 5 Free';
+  font-style: normal;
+  font-weight: 900; /* Solid style */
+  font-display: block;
+  src: url('/webfonts/fa-solid-900.woff2') format('woff2'); /* Corrected path */
+}
+
+@font-face {
+  font-family: 'Font Awesome 5 Free';
+  font-style: normal;
+  font-weight: 400; /* Regular style, though often icons are specifically solid or brands */
+  font-display: block;
+  src: url('/webfonts/fa-regular-400.woff2') format('woff2'); /* Corrected path */
+}
+
+@font-face {
+  font-family: 'Font Awesome 5 Brands';
+  font-style: normal;
+  font-weight: 400; /* Brands style */
+  font-display: block;
+  src: url('/webfonts/fa-brands-400.woff2') format('woff2'); /* Corrected path */
+}
+
+/* Basic Font Awesome icon styling (from main.css) */
+/* These provide base styling if you use class="icon solid fa-..." */
+.icon {
+  text-decoration: none;
+  border-bottom: none;
+  position: relative;
+  /* display: inline-block; /* Often needed */
+  /* line-height: 1; /* Reset line height */
+}
+
+.icon::before { /* Changed from .icon:before to .icon::before for consistency */
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1; /* Ensure proper vertical alignment */
+  text-transform: none !important; /* From original CSS */
+  font-family: 'Font Awesome 5 Free'; /* Default to Free version */
+  font-weight: 400; /* Default to Regular weight for "Free" */
+}
+
+.icon > .label { /* For accessibility, if labels are hidden via CSS */
+  display: none;
+}
+
+.icon.solid::before, .fas::before { /* .fas is a common alias for solid */
+  font-family: 'Font Awesome 5 Free'; /* Explicitly set for solid */
+  font-weight: 900; /* Use Solid style weight */
+}
+
+.icon.brands::before, .fab::before { /* .fab is common alias for brands */
+  font-family: 'Font Awesome 5 Brands'; /* Brands have their own font family */
+  font-weight: 400; /* Brands are usually 400 weight in their own font file */
+}
+
+/* Note: For the actual icons (like fa-calendar-alt) to appear,
+   you either need the full Font Awesome CSS which defines the 'content' property
+   for each icon class, or use SVG icons, or define the 'content' property yourself.
+   The current setup in Coaching.tsx uses styled spans as icon placeholders,
+   which is a more controlled approach if not using the full FA CSS.
+   These @font-face rules make the font files available if needed.
+*/

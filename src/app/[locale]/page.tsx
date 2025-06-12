@@ -5,14 +5,18 @@ import Projects from '@/components/Projects'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 import { getTranslations } from '@/lib/translations'
-import { isValidLocale, type Locale } from '@/lib/i18n'
+import { isValidLocale, type Locale, locales } from '@/lib/i18n' // Added locales
 
-type Props = {
-  params: Promise<{ locale: string }>
+export async function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
 }
 
-export default async function Home({ params }: Props) {
-  const { locale: localeParam } = await params
+type Props = {
+  params: Promise<{ locale: string }> // Reverted
+}
+
+export default async function Home({ params }: Props) { // Reverted to async
+  const { locale: localeParam } = await params // Reverted
   const locale: Locale = isValidLocale(localeParam) ? localeParam : 'en'
   const t = getTranslations(locale)
 

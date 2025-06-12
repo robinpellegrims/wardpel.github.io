@@ -1,20 +1,38 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { getTranslations, generateStaticParams } from "@/lib/translations";
-import { isValidLocale } from "@/lib/i18n";
+import { getTranslations } from "@/lib/translations";
+import { isValidLocale, locales } from "@/lib/i18n";
+import "../../globals.css"; // Corrected path
 
-export { generateStaticParams };
+export async function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
 type Props = {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: string }>; // Reverted
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { locale: localeParam } = await params;
+  const { locale: localeParam } = await params; // Reverted
   const locale = isValidLocale(localeParam) ? localeParam : 'en';
   const t = getTranslations(locale);
   
+  // Determine canonical URLs with trailing slashes
+  const canonicalEnUrl = "https://wardpellegrims.be/en/";
+  const canonicalNlUrl = "https://wardpellegrims.be/nl/";
+  const rootUrl = "https://wardpellegrims.be/";
+
+  let currentCanonicalUrl: string;
+  if (locale === 'en') {
+    currentCanonicalUrl = canonicalEnUrl;
+  } else if (locale === 'nl') {
+    currentCanonicalUrl = canonicalNlUrl;
+  } else {
+    // Should not happen with generateStaticParams but good for safety
+    currentCanonicalUrl = rootUrl;
+  }
+
   return {
     title: t.meta.title,
     description: t.meta.description,
@@ -31,16 +49,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: t.meta.title,
       description: t.meta.description,
-      url: locale === 'en' ? 'https://wardpellegrims.be' : 'https://wardpellegrims.be/nl',
+      url: currentCanonicalUrl, // Use the locale-specific canonical URL
       siteName: 'Ward Pellegrims Coaching',
       locale: locale === 'en' ? 'en_US' : 'nl_BE',
       type: 'website',
     },
     alternates: {
-      canonical: locale === 'en' ? 'https://wardpellegrims.be' : 'https://wardpellegrims.be/nl',
+      canonical: currentCanonicalUrl, // Use the locale-specific canonical URL
       languages: {
-        'en-US': 'https://wardpellegrims.be',
-        'nl-BE': 'https://wardpellegrims.be/nl',
+        'en': canonicalEnUrl,
+        'nl': canonicalNlUrl,
+        'x-default': rootUrl,
       },
     },
   };
@@ -51,7 +70,13 @@ export const viewport = {
   initialScale: 1,
 };
 
-export default async function LocaleLayout({ children }: Props) {
+export default async function LocaleLayout({
+  children,
+}: // Removed _params from destructuring, Props type still enforces its presence
+Props) {
+  // Params are not used in this component directly.
+  // generateMetadata in this file DOES use params.
+
   return (
     <>
       {children}

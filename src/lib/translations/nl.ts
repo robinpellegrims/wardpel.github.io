@@ -91,9 +91,7 @@ export const nl = {
   
   // Footer section
   footer: {
-    copyright: "© Ward Pellegrims. Alle rechten voorbehouden.",
-    design: "Ontwerp:",
-    htmlUp: "HTML5 UP"
+    copyright: "© Ward Pellegrims. Alle rechten voorbehouden."
   },
   
   // Contact section

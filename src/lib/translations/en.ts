@@ -91,9 +91,7 @@ export const en = {
   
   // Footer section
   footer: {
-    copyright: "© Ward Pellegrims. All rights reserved.",
-    design: "Design:",
-    htmlUp: "HTML5 UP"
+    copyright: "© Ward Pellegrims. All rights reserved."
   },
   
   // Contact section
